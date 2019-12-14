@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include("connect.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -131,14 +132,88 @@
         </div>
     </nav>
     <!-- Page Content -->
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            <?php
-                include("main.php");
-            ?>           
+    </br>
+    </br>
+    </br>
 
+    <div class="container">
+            <div class="row">
+                <form action="saveproduct.php" class="form-horizontal" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="name" class="control-label col-md-3">ประเภทรถ :</label>
+                        <div class="col-md-9">
+                            <input type="radio" name="rdoType" value="1" checked require>รถเก๋ง</label>
+                            <input type="radio" name="rdoType" value="2" >รถกระบะ</label>
+                            <input type="radio" name="rdoType" value="3" >รถตู้</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="control-label col-md-3">ยี่ห้อรถ :</label>
+                        <div class="col-md-9">
+                            <input type="text" name="txtbrand" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="control-label col-md-3">รุ่น :</label>
+                        <div class="col-md-9">
+                            <input type="text" name="txtmodel" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="control-label col-md-3">ปี :</label>
+                        <div class="col-md-9">
+                            <input type="text" name="txtyear" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="control-label col-md-3">สี:</label>
+                        <div class="col-md-9">
+                            <input type="text" name="txtcolor" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="control-label col-md-3">เลขทะเบียน :</label>
+                        <div class="col-md-9">
+                            <input type="text" name="txtlicense" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="control-label col-md-3">จังหวัด :</label>
+                        <div class="col-md-9">
+                            <input type="text" name="txtprovince" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="control-label col-md-3">ราคา :</label>
+                        <div class="col-md-9">
+                            <input type="text" name="txtprice" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="control-label col-md-3">ID :</label>
+                        <div class="col-md-9">
+                            <input type="text" name="txtid" class="form-control">
+                        </div>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="name" class="control-label col-md-3">รูปรถ</label>
+                        <div class="col-md-9">
+                            <input type="file" name="filepic" class="form-control-file" accept="image/*">
+                        </div>
+                    </div>
+                    
+                    
+
+                    <div class="from-group">
+                        <div class="col-md-9 col-md-offset-3">
+                            <button type="summit" class="btn btn-primary">Post</button>
+                            <button type="reset" class="btn btn-danger">Reset</button>
+                        </div>
+                    </div>
+                </from>
+            </div>
         </div>
-    </div>
 </div>
 </body>
 </html>

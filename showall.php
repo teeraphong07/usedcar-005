@@ -9,7 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    </br>
+    </br>
+    </br>
     <title>Soi5 Used Cars 005</title>
 
     <!-- Bootstrap Core CSS -->
@@ -50,7 +52,7 @@
     <script src="js/startmin.js"></script>
 
 </head>
-<body>
+<body>  
 
 <div id="wrapper">
 
@@ -74,7 +76,7 @@
 
         <!-- Top Navigation: Right Menu -->
         <ul class="nav navbar-right navbar-top-links">
-        <?php 
+                <?php 
                     if(isset($_SESSION['id'])){
                 ?>
                     <li class="dropdown">
@@ -82,7 +84,6 @@
                         <i class="glyphicon glyphicon-user"></i>
                             ยินดีต้อนรับ <?php echo $_SESSION ['name']?> <span class="caret"></span>
                         </a>
-
                         <ul class="dropdown-menu">
                             <li><a href="#">โปรไฟล์</a></li>
                             <li><a href="#">รายการสั่งซื้อ</a></li>
@@ -90,7 +91,6 @@
                             <li><a href="logout.php">ออกจากระบบ</a></li>
                         </ul>
                     </li>
-                    
                     <li>
                         <a href="#">
                             <i class="glyphicon glyphicon-shopping-cart"></i>(0)
@@ -105,10 +105,13 @@
                     <?php 
                     }
                     ?>
-        </ul>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-        <!-- Sidebar -->
-        <div class="navbar-default sidebar" role="navigation">
+    <!-- Sidebar -->
+    <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
                     <li class="text-center">
@@ -126,19 +129,76 @@
                     <li>
                         <a href="showproduct.php?carType=3" class="active"><i class="fa fa-truck fa-fw"></i> รถตู้</a>
                     </li>
+                    <li>
+                        <a href="newproduct.php" class="active"><i class=""></i> + Post a car</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- Page Content -->
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            <?php
-                include("main.php");
-            ?>           
+    <!-- Page Content -->    
+    
+    <p><a href="newproduct.php" class="btn btn-success">+ Post a car</a>
 
+    <div class="container">
+        <div class = "row">
+           <?php  
+                include_once("connect.php");
+                $sql ="SELECT * FROM car ORDER BY id";
+                $result = $conn->query($sql);
+                if(!$result){
+                    echo "Error during data retrieval";
+                }
+                else{
+                    while($prd=$result->fetch_object()){
+                ?>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="thumbnail">
+                    <a href="productdetail.php?pid=<?php echo $prd->id; ?>&carType=<?php echo $id;?>">
+                        <img src="img/<?php echo $prd->carpic;?>" alt="">
+                    </a>
+                    <div class="caption">
+                        <h3><?php echo $prd->brand?></h3>
+                            <p><?php echo $prd->model?></p>
+                                <p><strong>ปี: <?php echo $prd->modelYear?></strong></p>
+                                <p><strong>สี: <?php echo $prd->color?></strong></p>
+                                <p><strong><?php echo $prd->license?></strong></p>
+                                <p><strong>Price: <?php echo $prd->price?></strong></p>
+                                <p><a href="#" class="btn btn-success">Read more</a></p>
+                                <p><a href="#" class="btn btn-success">Add to Basket</a>
+                                
+                                <a href="editproduct.php?pid=<?php echo $prd->id?>"
+                                class="btn btn-warning">
+                                    <i class="glyphicon glyphicon-pencil"></i>Edit                     
+                                </a>
+                                
+                                <a href="deleteproduct.php?pid=<?php echo $prd->id?>"
+                                class="btn btn-danger lnkdelete" >
+                                    <i class="glyphicon glyphicon-trash"></i>Delete                     
+                                </a>
+                                </p>
+                    </div>
+                </div>
+           </div>
+            <?php
+                }
+            }
+           ?>
         </div>
     </div>
-</div>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+        });
+        $(".lnkdelete").click(function(){
+            if(confirm("Confirm Delete?")){
+                return true;
+            }
+            else{
+            return false;
+            }
+        });
+    </script>
 </body>
 </html>

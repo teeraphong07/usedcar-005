@@ -33,6 +33,29 @@
     </head>
     <body>
 
+        <?php
+            include_once("connect.php");
+            if(isset($_POST['submit'])){
+                //mysql_escape_string
+                $username = $conn-> real_escape_string ($_POST['username']);
+                $password = md5($conn->real_escape_string($_POST['password']));
+                $sql = "SELECT * FROM customers WHERE username ='$username' AND password ='$password'";
+                //mysql_query
+                $result = $conn->query($sql);
+                //print_r($result);
+                if($result->num_rows>0){
+                    //เก็บค่าลง session
+                    //fetch data
+                    $row=$result->fetch_array();   //mysql fetch array
+                    $_SESSION['id']=$row['id'];
+                    $_SESSION["name"]=$row['firstname'] . " " . $row['lastname'];
+                    $_SESSION['username']=$row['username'];
+                    header("location: index.php");
+                    //วาปไปหน้าแรก
+                }
+            }
+        ?>
+
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
@@ -41,16 +64,20 @@
                             <h3 class="panel-title text-center">Please Sign In</h3>
                         </div>
                         <div class="panel-body">
-                            <form role="form">
+                            <form action="" method="post">
                                 <fieldset>
+                            
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                        <input class="form-control" placeholder="Username" name="username" type="text" autofocus>
                                     </div>
                                     <div class="form-group">
                                         <input class="form-control" placeholder="Password" name="password" type="password" value="">
                                     </div>
-                                    <!-- Change this to a button or input when using this as a form -->
-                                    <button class="btn btn-lg btn-success btn-block">Login</button>
+
+                                    <div class="panel-footer">
+                                        <!-- Change this to a button or input when using this as a form -->
+                                        <button type="submit" class="btn btn-success btn-block" name="submit" >Login</button>
+                                    </div>
                                 </fieldset>
                             </form>
                         </div>
