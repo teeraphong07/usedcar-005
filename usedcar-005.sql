@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 13, 2019 at 04:35 AM
--- Server version: 5.7.23
--- PHP Version: 7.1.30
+-- Generation Time: Dec 13, 2019 at 09:19 PM
+-- Server version: 8.0.17
+-- PHP Version: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `usedcar`
+-- Database: `usedcar-005`
 --
 
 -- --------------------------------------------------------
@@ -43,6 +43,15 @@ CREATE TABLE `car` (
   `carpic` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `car`
+--
+
+INSERT INTO `car` (`id`, `carType`, `brand`, `model`, `color`, `license`, `province`, `modelYear`, `price`, `postedBy`, `postedDate`, `carpic`) VALUES
+(1, 1, 'FIESTA', '2014 FIESTA 1.0 EcoBoost Sport\r\n', 'black ', '3 dsf 2523', 'กทม.', '2014', 250000, 1, '2019-12-14 10:31:00', '2014 FIESTA.jpg'),
+(2, 2, 'TOYOTA ', 'TOYOTA VIGO CHAMP 2.5J', 'white', '12 fds 2452', 'nakhonpathom', '2014', 290000, 1, '2019-12-14 10:31:00', 'TOYOTA VIGO CHAMP 2.5J.jpg'),
+(3, 3, 'Toyota', '2019 ALPHARD 2.5 HYB', 'black', '16 jhg 8769', 'Nakhonpathom', '2019', 2900000, 2, '2019-12-14 10:33:00', '2019 ALPHARD 2.5 HYB.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -58,6 +67,13 @@ CREATE TABLE `customers` (
   `email` varchar(1024) NOT NULL,
   `active` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`id`, `username`, `password`, `firstname`, `lastname`, `email`, `active`) VALUES
+(1, 't', '25d55ad283aa400af464c76d713c07ad', 'Teeraphong', 'Riangsantia', 'exynost07@gmail.com', 1);
 
 --
 -- Indexes for dumped tables
@@ -83,13 +99,13 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `car`
 --
 ALTER TABLE `car`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

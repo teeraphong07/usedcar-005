@@ -195,12 +195,7 @@
                             <input type="text" name="txtid" class="form-control">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="name" class="control-label col-md-3">DATe :</label>
-                        <div class="col-md-9">
-                            <input type="text" name="txtid" class="form-control">
-                        </div>
-                    </div>
+
                 
                     <div class="form-group">
                         <label for="name" class="control-label col-md-3">รูปรถ</label>

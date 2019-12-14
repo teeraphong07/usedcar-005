@@ -23,6 +23,7 @@
         $price = $_POST['txtprice'];
         $postid = $_POST['txtid'];
         $filename = $_FILES["filepic"]["name"];
+        
 
         
         
